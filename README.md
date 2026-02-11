@@ -1,16 +1,15 @@
-## Hi there 👋
+ENGLISH:
+This operating system is still in 
+its pre-beta phase. Crashes, errors, 
+and freezes can occur at any time.
 
-<!--
-**LySystemOS/LySystemOS** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+how to execute:
+    read howtoexecute.txt
 
-Here are some ideas to get you started:
+TURKISH:
+bu işletim sistemi hala 
+pre-beta dönemindedir. Her an çökme, hata verme 
+donma gibi olaylar yaşanabilir.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+nasıl çalıştırılır:
+    howtoexecute.txt'yi okuyun
