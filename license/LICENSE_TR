@@ -1,0 +1,305 @@
+UYARI! Çeviri'de syntax ve çeviri hataları olabilir. 
+
+                GNU GENEL KAMU LİSANSI
+                   Sürüm 2, Haziran 1991
+
+
+Telif Hakkı (C) 1989, 1991 Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+Herkesin bu lisans belgesinin birebir kopyalarını çoğaltmasına ve dağıtmasına
+izin verilir, ancak değiştirilmesine izin verilmez.
+
+                         Önsöz
+
+Çoğu yazılımın lisansları, o yazılımı paylaşma ve değiştirme özgürlüğünüzü
+elinizden almak üzere tasarlanmıştır. Buna karşılık, GNU Genel Kamu
+Lisansı, özgür yazılımı paylaşma ve değiştirme özgürlüğünüzü garanti altına
+almayı -- yazılımın tüm kullanıcıları için özgür olduğundan emin olmayı --
+amaçlar. Bu Genel Kamu Lisansı, Özgür Yazılım Vakfı'nın yazılımlarının çoğu
+ve yazarları tarafından bu lisansın kullanılacağı belirtilen diğer tüm
+programlar için geçerlidir. (Özgür Yazılım Vakfı'nın diğer bazı yazılımları
+bunun yerine GNU Kısıtlı Genel Kamu Lisansı kapsamındadır.) Siz de bunu kendi
+programlarınıza uygulayabilirsiniz.
+
+Özgür yazılımdan bahsettiğimizde, fiyattan değil, özgürlükten bahsediyoruz.
+Genel Kamu Lisanslarımız; özgür yazılımın kopyalarını dağıtma (ve isterseniz
+bu hizmet için ücret alma) özgürlüğüne sahip olmanızı, kaynak kodunu almanızı
+veya isterseniz alabilmenizi, yazılımı değiştirebilmenizi veya parçalarını yeni
+özgür programlarda kullanabilmenizi ve bunları yapabileceğinizi bilmenizi
+sağlamak için tasarlanmıştır.
+
+Haklarınızı korumak için, kimsenin bu hakları size tanımasını reddetmesini
+veya haklarınızdan vazgeçmenizi istemesini yasaklayan kısıtlamalar getirmemiz
+gerekmektedir. Yazılımın kopyalarını dağıtırsanız veya değiştirirseniz, bu
+kısıtlamalar sizin için belirli sorumluluklara dönüşür.
+
+Örneğin, böyle bir programın kopyalarını ücretsiz veya bir ücret karşılığında
+dağıtırsanız, sahip olduğunuz tüm hakları alıcılara da vermelisiniz. Onların
+da kaynak kodunu aldığından veya alabildiğinden emin olmalısınız. Ve onlara
+haklarını bilmeleri için bu şartları göstermelisiniz.
+
+Haklarınızı iki adımla koruyoruz: (1) yazılımın telif hakkını alıyoruz ve
+(2) size yazılımı kopyalama, dağıtma ve/veya değiştirme yasal iznini veren bu
+lisansı sunuyoruz.
+
+Ayrıca, her yazarın ve bizim korunmamız için, herkesin bu özgür yazılım için
+hiçbir garanti olmadığını anladığından emin olmak istiyoruz. Yazılım başkası
+tarafından değiştirilip başkalarına aktarılırsa, alıcıların ellerindekinin
+orijinal olmadığını bilmelerini istiyoruz; böylece başkaları tarafından ortaya
+çıkarılan sorunlar orijinal yazarların itibarına zarar vermez.
+
+Son olarak, her özgür program sürekli olarak yazılım patentleri tehdidi
+altındadır. Özgür bir programın yeniden dağıtıcılarının bireysel olarak patent
+lisansları alarak programı fiilen mülkiyetli hale getirmesi tehlikesinden
+kaçınmak istiyoruz. Bunu önlemek için, herhangi bir patentin ya herkesin özgür
+kullanımı için lisanslanması ya da hiç lisanslanmaması gerektiğini açıkça
+belirttik.
+
+Kopyalama, dağıtım ve değiştirme ile ilgili kesin şartlar ve koşullar aşağıdadır.
+
+                GNU GENEL KAMU LİSANSI        
+
+0. Bu Lisans, telif hakkı sahibi tarafından bu Genel Kamu Lisansı şartları
+altında dağıtılabileceğini belirten bir bildirim içeren herhangi bir program
+veya diğer eserler için geçerlidir. Aşağıda "Program", bu tür herhangi bir
+programı veya eseri; "Programı temel alan eser" ise Programı veya telif hakkı
+yasası kapsamındaki herhangi bir türev eseri ifade eder: yani, Programı veya
+bir kısmını içeren, birebir veya değişikliklerle ve/veya başka bir dile
+çevrilmiş eseri kasteder. (Bundan böyle, çeviri "değiştirme" terimi kapsamına
+sınırlama olmaksızın dahil edilmiştir.) Her lisans alan, "siz" olarak adlandırılır.
+
+Kopyalama, dağıtım ve değiştirme dışındaki faaliyetler bu Lisansın kapsamında
+değildir; bunlar kapsam dışındadır. Programı çalıştırma eylemi kısıtlanmamıştır
+ve Programın çıktısı, yalnızca içeriği Programı temel alan bir eser oluşturuyorsa
+(Programı çalıştırmaktan bağımsız olarak) kapsam dahilindedir. Bunun doğru
+olup olmadığı Programın ne yaptığına bağlıdır.
+
+1. Programın kaynak kodunun birebir kopyalarını, aldığınız haliyle, her kopyada
+uygun bir telif hakkı bildirimi ve garanti reddini açıkça ve uygun bir şekilde
+yayınlamak; bu Lisansa ve garantinin olmadığına atıfta bulunan tüm bildirimleri
+olduğu gibi korumak; ve Programın diğer alıcılarına Programla birlikte bu Lisansın
+bir kopyasını vermek şartıyla herhangi bir ortamda kopyalayabilir ve dağıtabilirsiniz.
+
+Kopyayı fiziksel olarak aktarma eylemi için bir ücret talep edebilir ve isterseniz
+ücret karşılığında garanti koruması sunabilirsiniz.
+
+2. Programın kopyasını veya kopyalarını ya da herhangi bir bölümünü değiştirebilir,
+böylece Programı temel alan bir eser oluşturabilir ve bu tür değişiklikleri veya
+eseri yukarıdaki Bölüm 1'in şartları altında kopyalayabilir ve dağıtabilirsiniz;
+ancak şu koşulların tümünü de yerine getirmeniz gerekir:
+a) Değiştirilen dosyaların, dosyaları değiştirdiğinizi ve herhangi bir
+değişikliğin tarihini belirten göze çarpan bildirimler taşımasını sağlamalısınız.
+b) Dağıttığınız veya yayınladığınız, tamamen veya kısmen Programı veya
+herhangi bir bölümünü içeren veya ondan türetilen herhangi bir eserin, bu
+Lisansın şartları altında tüm üçüncü şahıslara bir bütün olarak ücretsiz
+lisanslanmasını sağlamalısınız.
+c) Değiştirilen program çalıştırıldığında normalde komutları etkileşimli olarak
+okuyorsa, bu tür bir etkileşimli kullanım için en olağan şekilde çalıştırıldığında;
+uygun bir telif hakkı bildirimi ve garantinin olmadığına dair bir bildirim
+(veya garanti verdiğinizi söyleyen bir bildirim) ve kullanıcıların programı
+bu koşullar altında yeniden dağıtabileceklerine dair bir bildirim içeren ve
+kullanıcının bu Lisansın bir kopyasını nasıl görüntüleyebileceğini anlatan
+bir duyuru yazdırmasını veya görüntülemesini sağlamalısınız. (İstisna: Programın
+kendisi etkileşimli ise ancak normalde böyle bir duyuru yazdırmıyorsa, Programı
+temel alan eserinizin bir duyuru yazdırması gerekmez.)
+
+Bu gereklilikler, değiştirilen eserin bütünü için geçerlidir. O eserin tanımlanabilir
+bölümleri Programdan türetilmemişse ve makul bir şekilde kendi başlarına bağımsız
+ve ayrı eserler olarak kabul edilebiliyorsa, o zaman bu Lisans ve şartları, bunları
+ayrı eserler olarak dağıttığınızda o bölümler için geçerli değildir. Ancak aynı
+bölümleri Programı temel alan bir bütünün parçası olarak dağıttığınızda, bütünün
+dağıtımı, izinleri diğer lisans alanlar için bütünün tamamına ve dolayısıyla
+kimin yazdığına bakılmaksızın her bir parçasına uzanan bu Lisansın şartlarına
+göre olmalıdır.
+
+Bu nedenle, bu bölümün amacı tamamen sizin tarafınızdan yazılmış bir eserin
+haklarını iddia etmek veya haklarınıza itiraz etmek değildir; aksine amaç,
+Programı temel alan türev veya toplu eserlerin dağıtımını kontrol etme
+hakkını kullanmaktır.
+
+Ayrıca, Programı temel almayan başka bir eserin Programla (veya Programı temel alan
+bir eserle) bir depolama veya dağıtım ortamının bir biriminde sadece bir araya
+getirilmesi (aggregation), diğer eseri bu Lisansın kapsamına sokmaz.
+
+3. Programı (veya Bölüm 2 kapsamında onu temel alan bir eseri) yukarıdaki
+Bölüm 1 ve 2'nin şartları altında nesne kodu veya çalıştırılabilir biçimde
+kopyalayabilir ve dağıtabilirsiniz; ancak aşağıdakilerden birini de yapmanız gerekir:
+a) Buna, yazılım değişimi için geleneksel olarak kullanılan bir ortamda
+yukarıdaki Bölüm 1 ve 2'nin şartları altında dağıtılması gereken, makine
+tarafından okunabilir tam karşılık gelen kaynak kodunu eşlik ettirmek; veya,
+b) Buna, en az üç yıl geçerli olmak üzere, herhangi bir üçüncü şahsa, fiziksel
+kaynak dağıtımı maliyetinizden fazla olmayan bir ücret karşılığında, yazılım
+değişimi için geleneksel olarak kullanılan bir ortamda yukarıdaki Bölüm 1 ve
+2'nin şartları altında dağıtılacak olan, karşılık gelen kaynak kodunun makine
+tarafından okunabilir tam bir kopyasını verme yazılı teklifini eşlik ettirmek; veya,
+c) Buna, karşılık gelen kaynak kodunu dağıtma teklifine dair aldığınız bilgiyi
+eşlik ettirmek. (Bu alternatife yalnızca ticari olmayan dağıtım için ve
+programı nesne kodu veya çalıştırılabilir biçimde yukarıdaki b bendi uyarınca
+böyle bir teklifle birlikte aldıysanız izin verilir.)
+
+Bir eser için kaynak kodu, üzerinde değişiklik yapmak için eserin tercih edilen
+biçimi anlamına gelir. Çalıştırılabilir bir eser için tam kaynak kodu, içerdiği
+tüm modüllerin tüm kaynak kodunu, ayrıca ilişkili arayüz tanımlama dosyalarını ve
+çalıştırılabilir dosyanın derlenmesini ve kurulumunu kontrol etmek için kullanılan
+komut dosyalarını (scripts) ifade eder. Ancak, özel bir istisna olarak, dağıtılan
+kaynak kodunun, çalıştırılabilir dosyanın üzerinde çalıştığı işletim sisteminin
+ana bileşenleriyle (derleyici, çekirdek vb.) normalde dağıtılan herhangi bir şeyi,
+bu bileşenin kendisi çalıştırılabilir dosyaya eşlik etmedikçe içermesi gerekmez.
+
+Çalıştırılabilir veya nesne kodunun dağıtımı, belirli bir yerden kopyalamaya erişim
+sunarak yapılıyorsa, kaynak kodunu aynı yerden kopyalamaya eşdeğer erişim sunmak,
+üçüncü şahıslar kaynak kodunu nesne koduyla birlikte kopyalamaya zorunlu olmasa
+bile, kaynak kodunun dağıtımı olarak sayılır.
+
+4. Programı bu Lisans'ta açıkça belirtilenler dışında kopyalayamaz, değiştiremez,
+alt lisanslayamaz veya dağıtamazsınız. Programı kopyalamaya, değiştirmeye,
+alt lisanslamaya veya dağıtmaya yönelik diğer her türlü girişim hükümsüzdür ve
+bu Lisans kapsamındaki haklarınızı otomatik olarak sona erdirir. Ancak, bu Lisans
+kapsamında sizden kopyalar veya haklar almış olan tarafların lisansları, bu
+taraflar tam uyum içinde kaldıkları sürece sona ermeyecektir.
+5. Bu Lisansı imzalamadığınız için kabul etmek zorunda değilsiniz. Ancak, başka
+hiçbir şey size Programı veya türev eserlerini değiştirme veya dağıtma izni vermez.
+Bu Lisansı kabul etmezseniz bu eylemler yasalarca yasaklanmıştır. Bu nedenle,
+Programı (veya Programı temel alan herhangi bir eseri) değiştirerek veya dağıtarak,
+bunu yapmak için bu Lisansı ve Programı veya onu temel alan eserleri kopyalamak,
+dağıtmak veya değiştirmek için tüm şart ve koşullarını kabul ettiğinizi belirtmiş
+olursunuz.
+6. Programı (veya Programı temel alan herhangi bir eseri) her yeniden dağıttığınızda,
+alıcı, Programı bu şartlar ve koşullara tabi olarak kopyalamak, dağıtmak veya
+değiştirmek için orijinal lisans verenden otomatik olarak bir lisans alır. Alıcıların
+burada verilen hakları kullanmasına başka kısıtlamalar getiremezsiniz. Üçüncü şahısların
+bu Lisansa uymasını sağlamaktan sorumlu değilsiniz.
+7. Bir mahkeme kararı veya patent ihlali iddiası sonucunda veya başka herhangi bir
+nedenle (patent konularıyla sınırlı olmamak üzere), size bu Lisansın koşullarıyla
+çelişen koşullar (mahkeme emri, anlaşma veya başka bir şekilde) dayatılırsa,
+bunlar sizi bu Lisansın koşullarından muaf tutmaz. Yükümlülüklerinizi bu Lisans
+ve diğer ilgili yükümlülükler çerçevesinde aynı anda yerine getirecek şekilde
+dağıtım yapamıyorsanız, sonuç olarak Programı hiç dağıtamazsınız. Örneğin, bir
+patent lisansı, kopyaları doğrudan veya dolaylı olarak sizden alan herkes tarafından
+Programın telifsiz olarak yeniden dağıtılmasına izin vermiyorsa, hem bunu hem de
+bu Lisansı tatmin etmenin tek yolu Programın dağıtımından tamamen kaçınmaktır.
+
+Bu bölümün herhangi bir kısmı herhangi bir özel durumda geçersiz veya uygulanamaz
+bulunursa, bölümün geri kalanının uygulanması amaçlanmıştır ve bölümün bir bütün
+olarak diğer durumlarda uygulanması amaçlanmıştır.
+
+Bu bölümün amacı, sizi herhangi bir patenti veya diğer mülkiyet hakkı iddialarını
+ihlal etmeye teşvik etmek veya bu tür iddiaların geçerliliğine itiraz etmek değildir;
+bu bölümün tek amacı, kamu lisansı uygulamalarıyla hayata geçirilen özgür yazılım
+dağıtım sisteminin bütünlüğünü korumaktır. Birçok kişi, bu sistemin tutarlı bir
+şekilde uygulanmasına güvenerek bu sistem aracılığıyla dağıtılan geniş yazılım
+yelpazesine cömert katkılarda bulunmuştur; yazılımı başka bir sistem aracılığıyla
+dağıtmak isteyip istemediğine karar vermek yazarın/bağışçının yetkisindedir ve
+bir lisans alan bu seçimi dayatamaz.
+
+Bu bölüm, Lisansın geri kalanının bir sonucu olduğuna inanılan şeyi tamamen
+açık hale getirmeyi amaçlamaktadır.
+
+8. Programın dağıtımı ve/veya kullanımı belirli ülkelerde patentler veya telif
+hakkıyla korunan arayüzler tarafından kısıtlanmışsa, Programı bu Lisans altına
+alan orijinal telif hakkı sahibi, bu ülkeleri hariç tutan açık bir coğrafi
+dağıtım sınırlaması ekleyebilir; böylece dağıtıma yalnızca hariç tutulmayan
+ülkelerde veya ülkeler arasında izin verilir. Böyle bir durumda, bu Lisans,
+sınırlamayı Lisansın gövdesinde yazılıymış gibi dahil eder.
+9. Özgür Yazılım Vakfı, zaman zaman Genel Kamu Lisansı'nın gözden geçirilmiş
+ve/veya yeni sürümlerini yayınlayabilir. Bu yeni sürümler ruh olarak mevcut
+sürüme benzer olacak, ancak yeni sorunları veya endişeleri ele almak için
+ayrıntıda farklılık gösterebilecektir.
+
+Her sürüme ayırt edici bir sürüm numarası verilir. Program, kendisi için geçerli
+olan bu Lisansın bir sürüm numarasını ve "herhangi bir sonraki sürümü" belirtiyorsa,
+o sürümün veya Özgür Yazılım Vakfı tarafından yayınlanan herhangi bir sonraki
+sürümün şartlarına ve koşullarına uyma seçeneğine sahipsiniz. Program bu Lisansın
+bir sürüm numarasını belirtmiyorsa, Özgür Yazılım Vakfı tarafından şimdiye kadar
+yayınlanmış herhangi bir sürümü seçebilirsiniz.
+
+10. Programın parçalarını, dağıtım koşulları farklı olan diğer özgür programlara
+dahil etmek isterseniz, izin istemek için yazara yazın. Telif hakkı Özgür Yazılım
+Vakfı'na ait olan yazılımlar için Özgür Yazılım Vakfı'na yazın; bazen buna istisnalar
+yaparız. Kararımızda, özgür yazılımımızın tüm türevlerinin özgür statüsünü korumak
+ve genel olarak yazılımın paylaşımını ve yeniden kullanımını teşvik etmek olan
+iki hedefimiz rehberlik edecektir.
+
+                   GARANTİ YOKTUR
+
+11. PROGRAM ÜCRETSİZ OLARAK LİSANSLANDIĞI İÇİN, YÜRÜRLÜKTEKİ YASALARIN İZİN VERDİĞİ
+ÖLÇÜDE PROGRAM İÇİN HİÇBİR GARANTİ YOKTUR. YAZILI OLARAK AKSİ BELİRTİLMEDİKÇE,
+TELİF HAKKI SAHİPLERİ VE/VEYA DİĞER TARAFLAR PROGRAMI, TİCARETE ELVERİŞLİLİK VE
+BELİRLİ BİR AMACA UYGUNLUK ZIMNİ GARANTİLERİ DAHİL ANCAK BUNLARLA SINIRLI OLMAMAK
+ÜZERE, AÇIK VEYA ZIMNİ HİÇBİR GARANTİ OLMAKSIZIN "OLDUĞU GİBİ" SAĞLARLAR. PROGRAMIN
+KALİTESİ VE PERFORMANSI İLE İLGİLİ TÜM RİSK SİZE AİTTİR. PROGRAMIN KUSURLU OLDUĞU
+ANLAŞILIRSA, GEREKLİ TÜM SERVİS, ONARIM VEYA DÜZELTME MALİYETİNİ SİZ ÜSTLENİRSİNİZ.
+12. YÜRÜRLÜKTEKİ YASALAR GEREKTİRMEDİKÇE VEYA YAZILI OLARAK KABUL EDİLMEDİKÇE, HİÇBİR
+DURUMDA HİÇBİR TELİF HAKKI SAHİBİ VEYA PROGRAMI YUKARIDA İZİN VERİLDİĞİ GİBİ
+DEĞİŞTİREBİLECEK VE/VEYA YENİDEN DAĞITABİLECEK BAŞKA BİR TARAF, GENEL, ÖZEL, ARIZİ
+VEYA DOLAYLI HASARLAR (VERİ KAYBI VEYA VERİNİN HATALI HALE GELMESİ VEYA SİZİN VEYA
+ÜÇÜNCÜ ŞAHISLARIN UĞRADIĞI KAYIPLAR VEYA PROGRAMIN DİĞER PROGRAMLARLA ÇALIŞMAMASI
+DAHİL ANCAK BUNLARLA SINIRLI OLMAMAK ÜZERE) DAHİL OLMAK ÜZERE, PROGRAMIN
+KULLANIMINDAN VEYA KULLANILAMAMASINDAN KAYNAKLANAN HİÇBİR HASARDAN, SÖZ KONUSU SAHİP
+VEYA DİĞER TARAF BU TÜR HASARLARIN OLASILIĞI HAKKINDA BİLGİLENDİRİLMİŞ OLSA BİLE,
+SİZE KARŞI SORUMLU OLMAYACAKTIR.
+
+            ŞARTLAR VE KOŞULLARIN SONU
+
+  Bu Şartlar Yeni Programlarınıza Nasıl Uygulanır?
+
+
+Yeni bir program geliştirirseniz ve bunun halk için mümkün olan en büyük faydayı
+sağlamasını istiyorsanız, bunu başarmanın en iyi yolu, onu herkesin bu şartlar
+altında yeniden dağıtabileceği ve değiştirebileceği özgür bir yazılım yapmaktır.
+
+Bunu yapmak için, aşağıdaki bildirimleri programa ekleyin. Garanti reddini en
+etkili şekilde iletmek için bunları her kaynak dosyasının başına eklemek en
+güvenli yoldur; ve her dosya en azından "telif hakkı" satırına ve tam bildirimin
+nerede bulunduğuna dair bir işaretçiye sahip olmalıdır.
+
+
+<programın adını ve ne yaptığına dair kısa bir fikri veren tek bir satır.>
+Telif Hakkı (C) 2026  <yazarın adı>
+
+Bu program özgür yazılımdır; Özgür Yazılım Vakfı tarafından yayınlandığı
+şekliyle GNU Genel Kamu Lisansı'nın 2. sürümü veya (seçiminize bağlı olarak)
+daha sonraki herhangi bir sürümü koşulları altında yeniden dağıtabilir ve/veya
+değiştirebilirsiniz.
+
+Bu program faydalı olması ümidiyle dağıtılmaktadır, ancak HİÇBİR GARANTİSİ
+YOKTUR; hatta TİCARETE ELVERİŞLİLİK veya BELİRLİ BİR AMACA UYGUNLUK zımni
+garantisi bile yoktur. Daha fazla ayrıntı için GNU Genel Kamu Lisansı'na bakın.
+
+Bu programla birlikte GNU Genel Kamu Lisansı'nın bir kopyasını almış
+olmalısınız; almadıysanız, Free Software Foundation, Inc., 51 Franklin
+Street, Fifth Floor, Boston, MA 02110-1301 USA adresine yazın.
+
+
+
+Ayrıca size elektronik ve normal posta ile nasıl ulaşılacağına dair bilgileri ekleyin.
+
+Program etkileşimli ise, etkileşimli bir modda başladığında şuna benzer kısa bir
+bildirim çıktısı vermesini sağlayın:
+
+
+Gnomovision sürüm 69, Telif Hakkı (C) yıl yazarın adı
+Gnomovision KESİNLİKLE HİÇBİR GARANTİ ile gelmez; ayrıntılar için `show w' yazın.
+Bu özgür yazılımdır ve belirli koşullar altında yeniden dağıtabilirsiniz;
+ayrıntılar için `show c' yazın.
+
+
+
+Varsayımsal `show w' ve `show c' komutları Genel Kamu Lisansı'nın ilgili bölümlerini
+göstermelidir. Elbette, kullandığınız komutlar `show w' ve `show c' dışında bir şey
+olabilir; hatta programınıza uygunsa fare tıklamaları veya menü öğeleri olabilir.
+
+Gerekirse, işvereninize (bir programcı olarak çalışıyorsanız) veya okulunuza (varsa)
+program için bir "telif hakkı feragatnamesi" imzalatmalısınız. İşte bir örnek;
+isimleri değiştirin:
+
+Yoyodyne, Inc., James Hacker tarafından yazılan (derleyicilere pas atan)
+`Gnomovision' programındaki tüm telif hakkı menfaatlerini reddeder.
+
+<Ty Coon'un imzası>, 1 Nisan 1989
+Ty Coon, Başkan Yardımcısı
+
+Bu Genel Kamu Lisansı, programınızın mülkiyetli programlara dahil edilmesine izin
+vermez. Programınız bir alt yordam kütüphanesi ise, mülkiyetli uygulamaların
+kütüphane ile bağlanmasına izin vermeyi daha yararlı bulabilirsiniz. Yapmak
+istediğiniz buysa, bu Lisans yerine GNU Kısıtlı Genel Kamu Lisansı'nu kullanın.

@@ -1,0 +1,47 @@
+ENGLISH:
+1.Install Docker.
+
+2.Start Docker:
+First, Execute this command:
+    docker build buildenv -t myos-buildenvü
+
+And, Execute this command:
+Linux & MacOS:docker run --rm -it -v "$(pwd):/root/env" myos-buildenv
+Windows:
+    Powershell:docker run --rm -it -v "${PWD}:/root/env" myos-buildenv
+    CMD:docker run --rm -it -v "%cd%:/root/env" myos-buildenv
+
+Docker its started, and write this command in docker:
+    make build-x86_64
+
+how to run:
+    1.Install QEMU
+    2.qemu-system-x86_64.exe -cdrom dist/kernel.iso 
+
+NOTE:Do this in the LySystem directory!
+
+TURKISH:
+1. Docker'ı kurun.
+
+2. Docker'ı başlatın:
+Öncelikle şu komutu çalıştırın:
+`docker build buildenv -t myos-buildenv`
+
+Ve ardından şu komutu çalıştırın:
+Linux ve MacOS: docker run --rm -it -v "$(pwd):/root/env" myos-buildenv
+Windows:
+
+Powershell: docker run --rm -it -v "${PWD}:/root/env" myos-buildenv
+
+CMD: docker run --rm -it -v "%cd%:/root/env" myos-buildenv
+
+Docker başlatıldıktan sonra, Docker'da şu komutu yazın:
+make build-x86_64
+
+Çalıştırma adımları:
+
+1.QEMU'yu kurun
+2.qemu-system-x86_64.exe -cdrom dist/kernel.iso
+
+NOTE:Bunu LySystem dizininde yapın!
+
