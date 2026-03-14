@@ -3,7 +3,7 @@ ENGLISH:
 
 2.Start Docker:
 First, Execute this command:
-    docker build buildenv -t myos-buildenvü
+    docker build buildenv -t myos-buildenv
 
 And, Execute this command:
 Linux & MacOS:docker run --rm -it -v "$(pwd):/root/env" myos-buildenv
