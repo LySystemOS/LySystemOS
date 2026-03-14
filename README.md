@@ -1,15 +1,27 @@
-ENGLISH:
-This operating system is still in 
-its pre-beta phase. Crashes, errors, 
-and freezes can occur at any time.
+LySystem Operating System
+Copyright (C) 2026 LySystem
 
-how to execute:
-    read howtoexecute.txt
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2
+as published by the Free Software Foundation.
+
+
+ENGLISH:
+This operating system is currently in a pre-beta stage.
+Crashes, errors, and system freezes may occur at any time.
+
+This system is experimental and should not be used on
+important machines or with important data.
+
+How to execute:
+    Read "howtoexecute.txt".
 
 TURKISH:
-bu işletim sistemi hala 
-pre-beta dönemindedir. Her an çökme, hata verme 
-donma gibi olaylar yaşanabilir.
+Bu işletim sistemi şu anda pre-beta aşamasındadır.
+Her an çökme, hata veya donma yaşanabilir.
 
-nasıl çalıştırılır:
-    howtoexecute.txt'yi okuyun
+Bu sistem deneysel amaçlıdır. Önemli bilgisayarlarda
+veya önemli verilerle kullanılması önerilmez.
+
+Nasıl çalıştırılır:
+    "howtoexecute.txt" dosyasını okuyun.
