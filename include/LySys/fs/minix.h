@@ -19,16 +19,16 @@ struct minix2_superblock {
 };
 
 struct minix2_inode {
-    uint16_t i_mode;        // Offset 0: Dosya Tipi ve İzinler
-    uint16_t i_uid;         // Offset 2: Kullanıcı ID
-    uint32_t i_size;        // Offset 4: DOSYA BOYUTU (Burada olmalı!)
-    uint32_t i_mtime;       // Offset 8: Zaman Damgası
-    uint8_t  i_gid;         // Offset 12: Grup ID
-    uint8_t  i_nlinks;      // Offset 13: Link Sayısı
-    uint16_t i_zone[7];     // Offset 14: Veri Blokları (Zone 0-6)
-    uint16_t i_indir_zone;  // Offset 28: Dolaylı Blok
-    uint16_t i_double_indir;// Offset 30: Çift Dolaylı Blok
-} __attribute__((packed));  // TOPLAM: 32 Byte
+    uint16_t i_mode;
+    uint16_t i_uid;
+    uint32_t i_size;
+    uint32_t i_mtime;
+    uint8_t  i_gid;
+    uint8_t  i_nlinks;
+    uint16_t i_zone[7];
+    uint16_t i_indir_zone;
+    uint16_t i_double_indir;
+} __attribute__((packed));
 
 struct minix_dir_entry {
     uint16_t inode;
