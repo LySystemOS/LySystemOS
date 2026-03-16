@@ -2,8 +2,8 @@
 
 #include <LySys/types.h>
 
-#define INODE_BITMAP_LBA 2
-#define ZONE_BITMAP_LBA  3 
+#define MINIX_V2_MAGIC   0x2478
+#define MINIX_INODE_SIZE 32
 
 struct minix2_superblock {
     uint16_t s_ninodes;
@@ -16,7 +16,7 @@ struct minix2_superblock {
     uint16_t s_magic;
     uint16_t s_state;
     uint32_t s_zones;
-};
+} __attribute__((packed));
 
 struct minix2_inode {
     uint16_t i_mode;
@@ -26,8 +26,9 @@ struct minix2_inode {
     uint8_t  i_gid;
     uint8_t  i_nlinks;
     uint16_t i_zone[7];
-    uint16_t i_indir_zone;
-    uint16_t i_double_indir;
+    uint16_t i_indirect;
+    uint16_t i_double_indirect;
+    uint16_t i_unused;
 } __attribute__((packed));
 
 struct minix_dir_entry {
@@ -38,19 +39,19 @@ struct minix_dir_entry {
 extern struct minix2_superblock current_sb;
 
 int minix_GetSuperBlock();
-void minix_GetRootInode();
-void minix_ListRoot();
+int minixfs_init();
+struct minix2_inode minix_GetInode(uint16_t inode_no);
 void minix_ReadInode(uint16_t inode_no, struct minix2_inode *inode);
 void minix_WriteInode(uint16_t inode_no, struct minix2_inode *inode);
-void minix_FreeInode(uint16_t inode_no);
-struct minix2_inode minix_GetInode(uint16_t inode_no);
 uint16_t minix_AllocateInode();
+void minix_FreeInode(uint16_t inode_no);
+void minix_GetRootInode();
 int minix_CreateFile(char* name);
 int minix_DeleteFile(char* name);
 int minix_ReadFile(char* name, char *output, int count);
 int minix_WriteFile(char* name, const char* input, int count);
-int minix_CreateDir(char* name);
-int minix_DeleteDir(char* name);
 int minix_RenameFile(char* old_name, char* new_name);
 int minix_CopyFile(char* source, char* dest);
-int minixfs_init();
+int minix_CreateDir(char* name);
+int minix_DeleteDir(char* name);
+void minix_ListDir(char* name);

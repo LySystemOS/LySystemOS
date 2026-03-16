@@ -17,6 +17,7 @@ typedef long long          intptr_t;
 typedef uint64_t           phys_addr_t;
 typedef uint64_t           virt_addr_t;
 typedef int                pid_t;
+typedef uint64_t           cputime_t;
 
 typedef _Bool bool;
 #define true  1

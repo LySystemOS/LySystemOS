@@ -3,6 +3,9 @@
 
 #include <LySys/types.h>
 
+extern uint32_t total_blocks;
+extern uint32_t used_blocks;
+
 #define PAGE_SIZE 4096
 #define BLOCKS_PER_BYTE 8
 

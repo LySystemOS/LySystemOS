@@ -80,3 +80,81 @@ char* strncpy(char* dest, const char* src, size_t n) {
         dest[i] = '\0';
     return dest;
 }
+
+char* strrchr(const char* s, int c) {
+    char* last = 0;
+    while (*s != '\0') {
+        if (*s == (char)c) {
+            last = (char*)s;
+        }
+        s++;
+    }
+    if ((char)c == '\0') {
+        return (char*)s;
+    }
+    return last;
+}
+
+char* strchr(const char* s, int c) {
+    while (*s != (char)c) {
+        if (*s == '\0') {
+            return 0;
+        }
+        s++;
+    }
+    return (char*)s;
+}
+
+char* strtok(char* str, const char* delimiters) {
+    static char* last_pos = 0;
+    
+    if (str != 0) {
+        last_pos = str;
+    } else if (last_pos == 0) {
+        return 0;
+    }
+
+    char* start = last_pos;
+    while (*start) {
+        const char* d = delimiters;
+        int is_delimiter = 0;
+        while (*d) {
+            if (*start == *d) {
+                is_delimiter = 1;
+                break;
+            }
+            d++;
+        }
+        if (!is_delimiter) break;
+        start++;
+    }
+
+    if (*start == '\0') {
+        last_pos = 0;
+        return 0;
+    }
+
+    char* end = start;
+    while (*end) {
+        const char* d = delimiters;
+        int is_delimiter = 0;
+        while (*d) {
+            if (*end == *d) {
+                is_delimiter = 1;
+                break;
+            }
+            d++;
+        }
+        if (is_delimiter) break;
+        end++;
+    }
+
+    if (*end != '\0') {
+        *end = '\0';
+        last_pos = end + 1;
+    } else {
+        last_pos = 0;
+    }
+
+    return start;
+}

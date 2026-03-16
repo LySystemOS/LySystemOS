@@ -1,4 +1,5 @@
 #include <LySys/LySystem.h>
+#include <LySys/sched.h>
 #include <LySys/types.h>
 
 uint64_t ticks = 0;
@@ -8,12 +9,15 @@ uint64_t get_uptime() {
 }
 
 void msleep(uint32_t ms) {
-    uint64_t start_ticks = ticks;
-    uint64_t wait_ticks = ms / 10; 
-    
-    while (ticks < start_ticks + wait_ticks) {
-        __asm__ volatile("hlt"); 
-    }
+    if (ms == 0) return;
+
+    __asm__ volatile("cli");
+    struct Task* t = &TaskTable[CurrentTaskPID];
+    t->msleep = ms / 10;
+    t->state = TASK_SLEEPING;
+    __asm__ volatile("sti");
+
+    Schedule();
 }
 
 void sleep(uint32_t s) {

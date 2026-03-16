@@ -1,3 +1,3 @@
-LySystem pre-beta 0.1 Update notes:
-● Added FileSystem(MinixFS v2)
-● Added Scheduler (No multitasking just task system)
+LySystem pre-beta 0.2 Update notes:
+● Added dir feature
+● Real Multitasking (Finally)

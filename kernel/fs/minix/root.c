@@ -1,4 +1,5 @@
 #include <LySys/fs/minix.h>
+#include <LySys/string.h>
 #include <LySys/file/ide.h>
 #include <LySys/LySystem.h>
 
@@ -8,14 +9,23 @@ void minix_GetRootInode() {
     ide_read_sector(10, buffer);
     
     struct minix2_inode *root = (struct minix2_inode *)(buffer);
+    printk("--- Inode Bilgileri (Sektor 10) ---\n");
+    printk("Mode:     %x\n", root->i_mode);
+    printk("UID:      %d\n", root->i_uid);
+    printk("GID:      %d\n", root->i_gid);
+    printk("Size:     %d bytes\n", root->i_size);
+    printk("MTime:    %d\n", root->i_mtime);
+    printk("NLinks:   %d\n", root->i_nlinks);
     
-    printk("Root Inode Mode: %x\n", root->i_mode);
-    printk("Root Size: %d bytes\n", root->i_size);
-    printk("Root First Data Zone: %d\n", root->i_zone[0]);
+    printk("Zones:\n");
+    for(int i = 0; i < 10; i++) {
+        printk("  Zone[%d]: %d\n", i, root->i_zone[i]);
+    }
+    printk("----------------------------------\n");
 }
 
-void minix_ListRoot() {
-    uint8_t sector_buffer[1024]; 
+void minix_List() {
+    uint8_t sector_buffer[1024];
 
     ide_read_sector(438, sector_buffer);
     ide_read_sector(439, sector_buffer + 512);
@@ -39,7 +49,9 @@ void minix_ListRoot() {
             printk("%s", entry[i].name);
             
             if (is_dir) {
-                printk("/");
+                if (strcmp(entry[i].name, ".") != 0 && strcmp(entry[i].name, "..") != 0) {
+                    printk("/");
+                }
             }
             printk("\n");
         }

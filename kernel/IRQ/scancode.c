@@ -156,7 +156,7 @@ char keyboard_transform(uint16_t code) {
         case KEY_SPACE: return ' ';
         case KEY_ENTER: return '\n';
         case KEY_BACKSPACE: return '\b';
-        case KEY_ESC: clear_screen(0x000000); '\0';
+        case KEY_ESC: clear_screen(0x000000); ListTask(); '\0';
 
         default: return '\0';
     }

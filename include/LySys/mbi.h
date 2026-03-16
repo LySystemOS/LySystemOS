@@ -39,6 +39,18 @@ struct mb2_tag_framebuffer {
     struct mb2_fb_common common;
 } __attribute__((packed));
 
+struct mb2_tag_old_acpi {
+    uint32_t type;
+    uint32_t size;
+    uint8_t rsdp[0];
+} __attribute__((packed));
+
+struct mb2_tag_new_acpi {
+    uint32_t type;
+    uint32_t size;
+    uint8_t rsdp[0];
+} __attribute__((packed));
+
 struct framebuffer_info {
     uint64_t addr;
     uint32_t pitch;

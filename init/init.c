@@ -1,4 +1,5 @@
 #include <LySys/LySystem.h>
+#include <LySys/errno.h>
 #include <LySys/timer.h>
 #include <LySys/time.h>
 #include <LySys/pmm.h>
@@ -8,11 +9,17 @@
 #include <LySys/video.h>
 #include <LySys/file/ide.h>
 #include <LySys/vfs.h>
+#include <LySys/sched.h>
 
 extern void traps_init();
 extern uint32_t mbi_address;
 extern char _kernel_start[];
 extern char _kernel_end[];
+
+void kernelthread1() {
+    while (1);
+    ExitTask(0);
+}
 
 void start_kernel() {
     __asm__ volatile("cli");
@@ -28,13 +35,11 @@ void start_kernel() {
     time_init();
     traps_init();
     heap_init(HEAP_START_ADDR, HEAP_START_ADDR + HEAP_SIZE);
-    fs_init();
-    uint64_t *debug_addrm = (uint64_t *)0x10e0; 
-    *debug_addrm = 0x525953594C;
-    __asm__ volatile("sti");
-    while(1) { __asm__ volatile("hlt"); }
-
+    if (fs_init() != ESUCCESS) {
+        panic("FS Mount Error!");
+    }
+    sched_init();
+    CreateTask("task1", kernelthread1, 0);
     while(1) {
-        __asm__ volatile("hlt");
     }
 }

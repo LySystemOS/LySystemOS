@@ -17,3 +17,4 @@
 
 int putchar(int c);
 int printk(const char *fmt, ...);
+void panic(const char * s);

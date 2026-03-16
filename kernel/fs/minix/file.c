@@ -20,14 +20,65 @@ void FreeZone(uint16_t zone_no) {
     ide_write_sector(ZONE_BITMAP_LBA, buf);
 }
 
+uint32_t FindSectorOfPathDir(char* path, char* out_filename) {
+    char temp_path[256];
+    strncpy(temp_path, path, 255);
+    temp_path[255] = '\0';
+    
+    char* last_slash = strrchr(temp_path, '/');
+    if (!last_slash) {
+        strncpy(out_filename, path, 30);
+        return 438;
+    }
+    
+    if (last_slash == temp_path) {
+        strncpy(out_filename, path + 1, 30);
+        return 438;
+    }
+    
+    *last_slash = '\0';
+    strncpy(out_filename, last_slash + 1, 30);
+    
+    char* token = strtok(temp_path, "/");
+    uint32_t current_sector = 438;
+    
+    while (token != NULL) {
+        uint8_t buf[512];
+        ide_read_sector(current_sector, buf);
+        struct minix_dir_entry *entries = (struct minix_dir_entry *)buf;
+        
+        uint16_t found_inode = 0;
+        for (int i = 0; i < 16; i++) {
+            if (entries[i].inode != 0 && strcmp(entries[i].name, token) == 0) {
+                found_inode = entries[i].inode;
+                break;
+            }
+        }
+        
+        if (found_inode == 0) return 0;
+        
+        struct minix2_inode inode = minix_GetInode(found_inode);
+        if ((inode.i_mode & 0x4000) != 0x4000) return 0;
+        
+        current_sector = inode.i_zone[0] * 2;
+        token = strtok(NULL, "/");
+    }
+    
+    return current_sector;
+}
+
 uint16_t FindEntry(char* name) {
+    char filename[32];
+    uint32_t dir_sector = FindSectorOfPathDir(name, filename);
+    if (dir_sector == 0) return 0;
+
     uint8_t buf[512];
-    ide_read_sector(438, buf);
+    ide_read_sector(dir_sector, buf);
     struct minix_dir_entry *entries = (struct minix_dir_entry *)buf;
 
     for (int i = 0; i < 16; i++) {
         if (entries[i].inode != 0) {
-            if (strcmp(entries[i].name, name) == 0) {
+            if (strcmp(entries[i].name, filename) == 0) {
                 return entries[i].inode;
             }
         }
@@ -39,6 +90,10 @@ int minix_CreateFile(char* name) {
     if (FindEntry(name) != 0) {
         return -EEXIST;
     }
+
+    char filename[32];
+    uint32_t dir_sector = FindSectorOfPathDir(name, filename);
+    if (dir_sector == 0) return -ENOENT;
 
     uint16_t new_inode_no = minix_AllocateInode();
     if (new_inode_no == 0) {
@@ -59,20 +114,25 @@ int minix_CreateFile(char* name) {
     
     ide_write_sector(sector, buf);
 
-    ide_read_sector(438, buf);
+    ide_read_sector(dir_sector, buf);
     struct minix_dir_entry *entries = (struct minix_dir_entry *)buf;
     for(int i = 0; i < 16; i++) {
         if(entries[i].inode == 0) {
             entries[i].inode = new_inode_no;
-            strncpy(entries[i].name, name, 30);
-            ide_write_sector(438, buf);
+            strncpy(entries[i].name, filename, 30);
+            ide_write_sector(dir_sector, buf);
             return ESUCCESS;
         }
     }
+    return -ENOSPC;
 }
 
 int minix_DeleteFile(char* name) {
-    if (strcmp(name, ".") == 0 || strcmp(name, "..") == 0) {
+    char filename[32];
+    uint32_t dir_sector = FindSectorOfPathDir(name, filename);
+    if (dir_sector == 0) return -ENOENT;
+
+    if (strcmp(filename, ".") == 0 || strcmp(filename, "..") == 0) {
         return -EACCES;
     }
 
@@ -80,11 +140,11 @@ int minix_DeleteFile(char* name) {
     uint16_t target_inode = 0;
     int entry_index = -1;
 
-    ide_read_sector(438, buf);
+    ide_read_sector(dir_sector, buf);
     struct minix_dir_entry *entries = (struct minix_dir_entry *)buf;
 
     for (int i = 0; i < 16; i++) {
-        if (entries[i].inode != 0 && strcmp(entries[i].name, name) == 0) {
+        if (entries[i].inode != 0 && strcmp(entries[i].name, filename) == 0) {
             target_inode = entries[i].inode;
             entry_index = i;
             break;
@@ -117,11 +177,11 @@ int minix_DeleteFile(char* name) {
     buf[byte_idx] &= ~(1 << bit_idx);
     ide_write_sector(INODE_BITMAP_LBA, buf);
 
-    ide_read_sector(438, buf);
+    ide_read_sector(dir_sector, buf);
     struct minix_dir_entry *dir_entries = (struct minix_dir_entry *)buf;
     dir_entries[entry_index].inode = 0;
     memset(dir_entries[entry_index].name, 0, 30);
-    ide_write_sector(438, buf);
+    ide_write_sector(dir_sector, buf);
 
     return ESUCCESS;
 }
@@ -208,6 +268,10 @@ int minix_WriteFile(char* name, const char* input, int count) {
 int minix_CreateDir(char* name) {
     if (FindEntry(name) != 0) return -EEXIST;
 
+    char filename[32];
+    uint32_t dir_sector = FindSectorOfPathDir(name, filename);
+    if (dir_sector == 0) return -ENOENT;
+
     uint16_t new_inode_no = minix_AllocateInode();
     if (new_inode_no <= 2) return -ENOSPC;
 
@@ -228,6 +292,7 @@ int minix_CreateDir(char* name) {
         }
     }
     return -ENOSPC; 
+    
     zone_allocated:
     uint8_t buf[512];
     uint32_t i_sector = 10 + ((new_inode_no - 1) / 16);
@@ -238,7 +303,7 @@ int minix_CreateDir(char* name) {
     
     memset(inode, 0, sizeof(struct minix2_inode));
     inode->i_mode = 0x41ED; 
-    inode->i_size = 64;     
+    inode->i_size = 64;    
     inode->i_nlinks = 2;    
     inode->i_zone[0] = new_zone;
     
@@ -251,18 +316,21 @@ int minix_CreateDir(char* name) {
     entries[0].inode = new_inode_no;
     strncpy(entries[0].name, ".", 30);
 
-    entries[1].inode = 1; 
+    ide_read_sector(dir_sector, buf);
+    uint16_t parent_inode = ((struct minix_dir_entry *)buf)[0].inode;
+
+    entries[1].inode = parent_inode; 
     strncpy(entries[1].name, "..", 30);
 
     ide_write_sector(new_zone * 2, dir_data);
 
-    ide_read_sector(438, buf);
+    ide_read_sector(dir_sector, buf);
     struct minix_dir_entry *root_entries = (struct minix_dir_entry *)buf;
     for(int i=0; i<16; i++) {
         if(root_entries[i].inode == 0) {
             root_entries[i].inode = new_inode_no;
-            strncpy(root_entries[i].name, name, 30);
-            ide_write_sector(438, buf);
+            strncpy(root_entries[i].name, filename, 30);
+            ide_write_sector(dir_sector, buf);
             return ESUCCESS;
         }
     }
@@ -270,29 +338,30 @@ int minix_CreateDir(char* name) {
 }
 
 void minix_ListDir(char* name) {
-    uint16_t inode_no = 1;
-
-    if (name != NULL && strcmp(name, "/") != 0) {
-        inode_no = FindEntry(name);
-    }
+    uint32_t current_sector;
     
-    if (inode_no == 0) {
-        printk("Dizin bulunamadi.\n");
-        return;
-    }
-
-    struct minix2_inode inode = minix_GetInode(inode_no);
-    
-    if ((inode.i_mode & 0x4000) != 0x4000) {
-        printk("Hata: '%s' bir dizin degil!\n", name);
-        return;
+    if (name == NULL || strcmp(name, "/") == 0 || strcmp(name, "") == 0) {
+        current_sector = 438;
+    } else {
+        uint16_t inode_no = FindEntry(name);
+        if (inode_no == 0) {
+            printk("Dizin bulunamadi.\n");
+            return;
+        }
+        
+        struct minix2_inode inode = minix_GetInode(inode_no);
+        if ((inode.i_mode & 0x4000) != 0x4000) {
+            printk("Hata: '%s' bir dizin degil!\n", name);
+            return;
+        }
+        current_sector = inode.i_zone[0] * 2;
     }
 
     uint8_t buf[512];
-    ide_read_sector(inode.i_zone[0] * 2, buf);
+    ide_read_sector(current_sector, buf);
     struct minix_dir_entry *entries = (struct minix_dir_entry *)buf;
 
-    printk("\n--- Dizin Icerigi: %s ---\n", (name) ? name : "/");
+    printk("\n--- Dizin Icerigi: %s ---\n", (name && strlen(name) > 0) ? name : "/");
     for (int i = 0; i < 16; i++) {
         if (entries[i].inode != 0) {
             printk("[%d] %s\n", entries[i].inode, entries[i].name);
@@ -302,7 +371,11 @@ void minix_ListDir(char* name) {
 }
 
 int minix_DeleteDir(char* name) {
-    if (strcmp(name, ".") == 0 || strcmp(name, "..") == 0) return -EPERM;
+    char filename[32];
+    uint32_t dir_sector = FindSectorOfPathDir(name, filename);
+    if (dir_sector == 0) return -ENOENT;
+
+    if (strcmp(filename, ".") == 0 || strcmp(filename, "..") == 0) return -EPERM;
 
     uint16_t inode_no = FindEntry(name);
     if (inode_no == 0) return -ENOENT;
@@ -330,13 +403,13 @@ int minix_DeleteDir(char* name) {
     buf[inode_no / 8] &= ~(1 << (inode_no % 8));
     ide_write_sector(2, buf);
 
-    ide_read_sector(438, buf);
+    ide_read_sector(dir_sector, buf);
     struct minix_dir_entry *root_entries = (struct minix_dir_entry *)buf;
     for(int i=0; i<16; i++) {
         if(root_entries[i].inode == inode_no) {
             root_entries[i].inode = 0;
             memset(root_entries[i].name, 0, 30);
-            ide_write_sector(438, buf);
+            ide_write_sector(dir_sector, buf);
             break;
         }
     }
@@ -344,24 +417,42 @@ int minix_DeleteDir(char* name) {
     return ESUCCESS;
 }
 
-
 int minix_RenameFile(char* old_name, char* new_name) {
+    char old_filename[32];
+    uint32_t old_dir_sector = FindSectorOfPathDir(old_name, old_filename);
+    if (old_dir_sector == 0) return -ENOENT;
+
+    char new_filename[32];
+    uint32_t new_dir_sector = FindSectorOfPathDir(new_name, new_filename);
+    if (new_dir_sector == 0) return -ENOENT;
+
     if (FindEntry(new_name) != 0) {
         return -EEXIST;
     }
 
     uint8_t buf[512];
-    ide_read_sector(438, buf);
+    ide_read_sector(old_dir_sector, buf);
     struct minix_dir_entry *entries = (struct minix_dir_entry *)buf;
 
     for (int i = 0; i < 16; i++) {
-        if (entries[i].inode != 0 && strcmp(entries[i].name, old_name) == 0) {
+        if (entries[i].inode != 0 && strcmp(entries[i].name, old_filename) == 0) {
+            uint16_t target_inode = entries[i].inode;
             
+            entries[i].inode = 0;
             memset(entries[i].name, 0, 30);
-            strncpy(entries[i].name, new_name, 30);
-            
-            ide_write_sector(438, buf);
-            return ESUCCESS;
+            ide_write_sector(old_dir_sector, buf);
+
+            ide_read_sector(new_dir_sector, buf);
+            struct minix_dir_entry *new_entries = (struct minix_dir_entry *)buf;
+            for (int j = 0; j < 16; j++) {
+                if (new_entries[j].inode == 0) {
+                    new_entries[j].inode = target_inode;
+                    strncpy(new_entries[j].name, new_filename, 30);
+                    ide_write_sector(new_dir_sector, buf);
+                    return ESUCCESS;
+                }
+            }
+            return -ENOSPC; 
         }
     }
 

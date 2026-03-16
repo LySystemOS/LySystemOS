@@ -40,7 +40,7 @@ uint16_t minix_AllocateInode() {
         if (bitmap[i] != 0xFF) {
             for (int bit = 0; bit < 8; bit++) {
                 if (!(bitmap[i] & (1 << bit))) {
-                    uint16_t found = (i * 8) + bit;
+                    uint16_t found = (i * 8) + bit + 1;
                     if (found <= 2) continue;
                     bitmap[i] |= (1 << bit);
                     ide_write_sector(INODE_BITMAP_LBA, bitmap);
@@ -55,7 +55,8 @@ uint16_t minix_AllocateInode() {
 void minix_FreeInode(uint16_t inode_no) {
     if (inode_no == 0) return;
     uint8_t buf[512];
+    uint16_t effective_no = inode_no - 1;
     ide_read_sector(INODE_BITMAP_LBA, buf);
-    buf[inode_no / 8] &= ~(1 << (inode_no % 8));
+    buf[effective_no / 8] &= ~(1 << (effective_no % 8));
     ide_write_sector(INODE_BITMAP_LBA, buf);
 }

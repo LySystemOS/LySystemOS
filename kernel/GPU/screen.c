@@ -15,6 +15,18 @@ void put_pixel(uint32_t x, uint32_t y, uint32_t color) {
     *(volatile uint32_t *)pixel_addr = color;
 }
 
+uint32_t get_pixel(uint32_t x, uint32_t y) {
+    if (x >= fb.width || y >= fb.height) return 0;
+    
+    if (fb.addr == 0) return 0;
+
+    uintptr_t fb_virtual = (uintptr_t)fb.addr + KERNEL_VIRTUAL_BASE;
+    
+    uint8_t *pixel_addr = (uint8_t *)fb_virtual + (y * fb.pitch) + (x * (fb.bpp / 8));
+
+    return *(volatile uint32_t *)pixel_addr;
+}
+
 void clear_screen(uint32_t color) {
     if (fb.addr == 0) return;
 
